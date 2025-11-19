@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Watcher.uz | Anime portal</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <script src="theme.js"></script>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a href="index.html" class="logo">WATCHER.UZ</a>
+      <nav>
+        <a class="nav-link active" href="index.html">Bosh sahifa</a>
+        <a class="nav-link" href="katalog.html">Katalog</a>
+        <a class="nav-link" href="#premyera">Premyeralar</a>
+      </nav>
+      <div class="nav-actions" id="nav-actions">
+        <button id="theme-toggle" class="theme-toggle" onclick="window.watcherTheme.cycle()" aria-label="Theme toggle">
+          <span class="theme-icon">🌓</span>
+        </button>
+        <button class="nav-btn" onclick="openModal('register')">Ro'yxatdan o'tish</button>
+        <button class="nav-btn primary" onclick="openModal('login')">Kirish</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">O‘zbek tilidagi anime media xab</p>
+        <h1>Watcher.uz bilan anime dunyosini lokal ruhda kuzating</h1>
+        <p>Premyeralar va katalog — barchasi bitta tezkor platformada. Subtitr, dublyaj va pleylislar o‘zbek auditoriyasi uchun qulaylashtirilgan.</p>
+        <div class="button-row">
+          <button class="primary" onclick="location.href='katalog.html'">Katalogga o‘tish</button>
+          <button onclick="location.href='#premyera'">Premyeralarni ko‘rish</button>
+        </div>
+      </div>
+      <img src="nakamoto.jpeg" alt="Anime poster">
+    </section>
+
+    <section class="premieres" id="premyera">
+      <header>
+        <div>
+          <p class="eyebrow">Yangi relizlar</p>
+          <h2>Haftaning asosiy premyeralari</h2>
+        </div>
+        <button onclick="location.href='katalog.html'">Barchasini ko‘rish</button>
+      </header>
+      <div class="grid preview">
+        <article class="card">
+          <div class="card-image-wrapper">
+            <img src="https://images6.alphacoders.com/133/1337465.jpg" alt="Yengil Serial">
+            <button class="favorite-btn" onclick="handleFavoriteClick(event, {title: 'Yengil Serial', status: 'ongoing', format: 'serial', dubbed: true, info: 'S01 · 6/12', cover: 'https://images6.alphacoders.com/133/1337465.jpg'})" title="Sevimlilarga qo'shish">
+              <span class="heart-icon">🤍</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <strong>Yengil Serial</strong>
+            <span>S01 · 6/12</span>
+            <span>Dublyaj | Fantastika</span>
+           </div>
+        </article>
+        <article class="card">
+          <div class="card-image-wrapper">
+            <img src="https://images8.alphacoders.com/133/1333824.png" alt="Klassik Serial">
+            <button class="favorite-btn" onclick="handleFavoriteClick(event, {title: 'Klassik Serial', status: 'completed', format: 'serial', dubbed: false, info: 'Yakunlangan · 24 qism', cover: 'https://images8.alphacoders.com/133/1333824.png'})" title="Sevimlilarga qo'shish">
+              <span class="heart-icon">🤍</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <strong>Klassik Serial</strong>
+            <span>Yakunlangan · 24 qism</span>
+            <span>Subtitr | Sarguzasht</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-image-wrapper">
+            <img src="https://images4.alphacoders.com/132/1328183.png" alt="Anime Film">
+            <button class="favorite-btn" onclick="handleFavoriteClick(event, {title: 'Anime Film', status: 'movie', format: 'movie', dubbed: true, info: '115 daqiqa', cover: 'https://images4.alphacoders.com/132/1328183.png'})" title="Sevimlilarga qo'shish">
+              <span class="heart-icon">🤍</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <strong>Anime Film</strong>
+            <span>115 daqiqa</span>
+            <span>Dublyaj | Drama</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Anime marafoningizni bugun boshlang</h2>
+      <p>Oylik obuna, reklamasiz pleer va istalgan qurilmada davomiy tomosha qilish imkoniyati.</p>
+      <div class="button-row">
+        <button class="primary">Obuna olish</button>
+        <button onclick="location.href='katalog.html'">Katalogni ko'rish</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 Watcher.uz — barcha huquqlar himoyalangan</footer>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Kirish</h2>
+        <button class="modal-close" onclick="closeModal('login')">&times;</button>
+      </div>
+      <form class="auth-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="login-email">Email yoki foydalanuvchi nomi</label>
+          <input type="text" id="login-email" name="email" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Parol</label>
+          <input type="password" id="login-password" name="password" required autocomplete="current-password">
+        </div>
+        <div class="form-options">
+          <label class="checkbox-label">
+            <input type="checkbox" name="remember">
+            <span>Eslab qolish</span>
+          </label>
+          <a href="#" class="forgot-link">Parolni unutdingizmi?</a>
+        </div>
+        <button type="submit" class="btn-primary full-width">Kirish</button>
+        <p class="form-footer">
+          Hisobingiz yo'qmi? <a href="#" onclick="closeModal('login'); openModal('register'); return false;">Ro'yxatdan o'ting</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div id="register-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Ro'yxatdan o'tish</h2>
+        <button class="modal-close" onclick="closeModal('register')">&times;</button>
+      </div>
+      <form class="auth-form" onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label for="register-username">Foydalanuvchi nomi</label>
+          <input type="text" id="register-username" name="username" required autocomplete="username" minlength="3" maxlength="20">
+        </div>
+        <div class="form-group">
+          <label for="register-email">Email</label>
+          <input type="email" id="register-email" name="email" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="register-password">Parol</label>
+          <input type="password" id="register-password" name="password" required autocomplete="new-password" minlength="6">
+          <small class="form-hint">Kamida 6 ta belgi</small>
+        </div>
+        <div class="form-group">
+          <label for="register-confirm">Parolni tasdiqlash</label>
+          <input type="password" id="register-confirm" name="confirm" required autocomplete="new-password">
+        </div>
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="terms" required>
+            <span>Men <a href="#">foydalanish shartlari</a> va <a href="#">maxfiylik siyosati</a>ni qabul qilaman</span>
+          </label>
+        </div>
+        <button type="submit" class="btn-primary full-width">Ro'yxatdan o'tish</button>
+        <p class="form-footer">
+          Allaqachon hisobingiz bormi? <a href="#" onclick="closeModal('register'); openModal('login'); return false;">Kirish</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Modal -->
+  <div id="admin-modal" class="modal">
+    <div class="modal-content admin-modal-content">
+      <div class="modal-header">
+        <h2>Admin Panel</h2>
+        <button class="modal-close" onclick="closeModal('admin')">&times;</button>
+      </div>
+      <div class="admin-content">
+        <div class="admin-stats">
+          <div class="stat-card">
+            <strong id="stat-users">0</strong>
+            <span>Jami foydalanuvchilar</span>
+          </div>
+          <div class="stat-card">
+            <strong id="stat-favorites">0</strong>
+            <span>Jami sevimlilar</span>
+          </div>
+          <div class="stat-card">
+            <strong id="stat-active">0</strong>
+            <span>Faol foydalanuvchilar</span>
+          </div>
+        </div>
+        <div class="admin-section">
+          <h3>Ro'yxatdan o'tgan foydalanuvchilar</h3>
+          <div id="admin-users-list" class="admin-users-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Modal -->
+  <div id="profile-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Profil</h2>
+        <button class="modal-close" onclick="closeModal('profile')">&times;</button>
+      </div>
+      <div class="profile-content">
+        <div class="profile-info">
+          <div class="profile-avatar">👤</div>
+          <div class="profile-details">
+            <h3 id="profile-username">Foydalanuvchi</h3>
+            <p id="profile-email">email@example.com</p>
+          </div>
+        </div>
+        <div class="profile-tabs">
+          <button class="tab-btn active" data-tab="favorites">Sevimlilar</button>
+          <button class="tab-btn" data-tab="settings">Sozlamalar</button>
+        </div>
+        <div class="tab-content active" id="favorites-tab">
+          <div id="favorites-list" class="favorites-grid"></div>
+          <div id="favorites-empty" class="empty-favorites">
+            <p>Hozircha sevimlilar ro'yxati bo'sh</p>
+          </div>
+        </div>
+        <div class="tab-content" id="settings-tab">
+          <div class="settings-content">
+            <button class="btn-primary" onclick="window.logout()">Chiqish</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="favorites.js"></script>
+  <script src="admin.js"></script>
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+  <script>
+    function updateFavoritesDisplay() {
+      const favorites = window.getFavorites ? window.getFavorites() : [];
+      const list = document.getElementById('favorites-list');
+      const empty = document.getElementById('favorites-empty');
+      
+      if (!list || !empty) return;
+      
+      if (favorites.length === 0) {
+        list.style.display = 'none';
+        empty.style.display = 'block';
+      } else {
+        list.style.display = 'grid';
+        empty.style.display = 'none';
+        list.innerHTML = favorites.map(item => `
+          <article class="card">
+            <div class="card-image-wrapper">
+              <img src="${item.cover}" alt="${item.title}">
+              <button class="favorite-btn active" onclick="handleFavoriteClick(event, ${JSON.stringify(item).replace(/"/g, '&quot;')})" title="Sevimlilardan olib tashlash">
+                <span class="heart-icon">❤️</span>
+              </button>
+            </div>
+            <div class="card-body">
+              <strong>${item.title}</strong>
+              <span>${item.info}</span>
+              <span>${item.dubbed ? "Dublyaj" : "Subtitrlangan"}</span>
+            </div>
+          </article>
+        `).join('');
+      }
+    }
+
+    function updateProfileInfo() {
+      const user = window.getCurrentUser ? window.getCurrentUser() : null;
+      if (user) {
+        const usernameEl = document.getElementById('profile-username');
+        const emailEl = document.getElementById('profile-email');
+        if (usernameEl) usernameEl.textContent = user.username;
+        if (emailEl) emailEl.textContent = user.email;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tab = btn.dataset.tab;
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+          btn.classList.add('active');
+          document.getElementById(`${tab}-tab`).classList.add('active');
+          if (tab === 'favorites') {
+            updateFavoritesDisplay();
+          }
+        });
+      });
+
+      const profileModal = document.getElementById('profile-modal');
+      if (profileModal) {
+        profileModal.addEventListener('click', (e) => {
+          if (e.target === profileModal) {
+            closeModal('profile');
+          }
+        });
+      }
+    });
+
+    function updatePremieresFavorites() {
+      const premieres = [
+        {title: 'Yengil Serial', status: 'ongoing', format: 'serial', dubbed: true, info: 'S01 · 6/12', cover: 'https://images6.alphacoders.com/133/1337465.jpg'},
+        {title: 'Klassik Serial', status: 'completed', format: 'serial', dubbed: false, info: 'Yakunlangan · 24 qism', cover: 'https://images8.alphacoders.com/133/1333824.png'},
+        {title: 'Anime Film', status: 'movie', format: 'movie', dubbed: true, info: '115 daqiqa', cover: 'https://images4.alphacoders.com/132/1328183.png'}
+      ];
+      
+      premieres.forEach(anime => {
+        const btn = document.querySelector(`[onclick*="${anime.title}"]`);
+        if (btn && window.isFavorite) {
+          const isFav = window.isFavorite(anime);
+          btn.classList.toggle('active', isFav);
+          const icon = btn.querySelector('.heart-icon');
+          if (icon) {
+            icon.textContent = isFav ? '❤️' : '🤍';
+          }
+        }
+      });
+    }
+
+    window.updateFavoritesDisplay = updateFavoritesDisplay;
+    window.updateProfileInfo = updateProfileInfo;
+
+    function updateAdminPanel() {
+      if (!window.isAdmin || !window.isAdmin()) return;
+      
+      const stats = window.getStats ? window.getStats() : { totalUsers: 0, totalFavorites: 0, activeUsers: 0 };
+      const users = window.getAllUsers ? window.getAllUsers() : [];
+      const allFavorites = window.getAllFavorites ? window.getAllFavorites() : [];
+      
+      document.getElementById('stat-users').textContent = stats.totalUsers;
+      document.getElementById('stat-favorites').textContent = stats.totalFavorites;
+      document.getElementById('stat-active').textContent = stats.activeUsers;
+      
+      const usersList = document.getElementById('admin-users-list');
+      if (usersList) {
+        if (users.length === 0) {
+          usersList.innerHTML = '<p class="empty-state">Hozircha foydalanuvchilar yo\'q</p>';
+        } else {
+          usersList.innerHTML = users.map(user => {
+            const userFavorites = allFavorites[user.username] || [];
+            const regDate = new Date(user.createdAt).toLocaleDateString('uz-UZ');
+            return `
+              <div class="admin-user-card">
+                <div class="user-info">
+                  <div class="user-avatar">👤</div>
+                  <div>
+                    <strong>${user.username}</strong>
+                    <p>${user.email}</p>
+                    <small>Ro'yxatdan o'tgan: ${regDate}</small>
+                  </div>
+                </div>
+                <div class="user-stats">
+                  <span>Sevimlilar: ${userFavorites.length}</span>
+                </div>
+                <button class="btn-danger" onclick="deleteUserById('${user.id}')" title="O'chirish">🗑️</button>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+    }
+
+    function deleteUserById(userId) {
+      if (!confirm('Bu foydalanuvchini o\'chirishni xohlaysizmi?')) return;
+      
+      if (window.deleteUser && window.deleteUser(userId)) {
+        showMessage('Foydalanuvchi o\'chirildi', 'success');
+        updateAdminPanel();
+      } else {
+        showMessage('Xatolik yuz berdi', 'error');
+      }
+    }
+
+    function showMessage(text, type) {
+      const existing = document.querySelector('.toast-message');
+      if (existing) {
+        existing.remove();
+      }
+
+      const toast = document.createElement('div');
+      toast.className = `toast-message ${type}`;
+      toast.textContent = text;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add('show');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    window.deleteUserById = deleteUserById;
+    window.updateAdminPanel = updateAdminPanel;
+
+    const originalOpenModal = window.openModal;
+    window.openModal = function(type) {
+      originalOpenModal(type);
+      if (type === 'profile') {
+        updateProfileInfo();
+        updateFavoritesDisplay();
+      } else if (type === 'admin') {
+        updateAdminPanel();
+      }
+    };
+
+    function handleFavoriteClick(event, anime) {
+      event.stopPropagation();
+      if (window.toggleFavorite) {
+        const isFav = window.toggleFavorite(anime);
+        const btn = event.target.closest('.favorite-btn');
+        if (btn) {
+          btn.classList.toggle('active', isFav);
+          const icon = btn.querySelector('.heart-icon');
+          if (icon) {
+            icon.textContent = isFav ? '❤️' : '🤍';
+          }
+        }
+        if (window.updateFavoritesDisplay) {
+          window.updateFavoritesDisplay();
+        }
+        updatePremieresFavorites();
+      }
+    }
+
+    window.handleFavoriteClick = handleFavoriteClick;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.isFavorite) {
+        updatePremieresFavorites();
+      }
+    });
+  </script>
+</body>
+</html>
